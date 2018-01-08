@@ -38,6 +38,19 @@ let jokes = [
 // serve back static files
 app.use(express.static('server/public'));
 
+
+// routes
+app.get('/jokes', (req, res) => {
+  res.send(jokes);
+});
+
+app.post('/jokes', (req, res) => {
+  console.log('req.body: ', req.body);
+  jokes.push(req.body);
+
+  res.sendStatus(201);
+});
+
 app.listen(port, function(){
   console.log('server running on: ', port);
 }); // end spin up server
